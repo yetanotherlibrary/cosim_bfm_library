@@ -5,22 +5,20 @@
 SHELL    = /bin/sh
 MAKEFILE = Makefile
 #-------------------------------------------------------------------------------
-ifeq ($(MAKECMDGOALS),$(findstring $(MAKECMDGOALS), "" "all" "run" "run_dpi" "run_vpi"))
-    ifndef COSIM_HOME
-       $(warning COSIM_HOME environment variable not defined.)
-       export COSIM_HOME = $(abspath ../../..)
-    endif
-    ifneq ($(findstring "include/python",$(PYTHONPATH)),"include/python")
-       $(warning PYTHONPATH updated.)
-       ifdef PYTHONPATH
-          PYTHONPATH := $(COSIM_HOME)/include/python:$(PYTHONPATH)
-       else
-          PYTHONPATH := $(COSIM_HOME)/include/python
-       endif
-    endif
-    DIR_XSIM := ../hw/sim/xsim
-    DIR_IVERILOG := ../hw/sim/iverilog
+ifndef COSIM_HOME
+   $(warning COSIM_HOME environment variable not defined.)
+   export COSIM_HOME = $(abspath ../../..)
 endif
+ifneq ($(findstring "include/python",$(PYTHONPATH)),"include/python")
+   $(warning PYTHONPATH updated.)
+   ifdef PYTHONPATH
+      PYTHONPATH := $(COSIM_HOME)/include/python:$(PYTHONPATH)
+   else
+      PYTHONPATH := $(COSIM_HOME)/include/python
+   endif
+endif
+DIR_VCS:= ../hw/sim/vcs
+DIR_IVERILOG := ../hw/sim/iverilog
 
 #-------------------------------------------------------------------------------
 TARGET     = test.py
@@ -34,12 +32,9 @@ all:
 run:
 	$(PYTHON) $(TARGET) --simulator=$(SIMULATOR) --cid=0 --verbose=0
 
-run_dpi dpi_run run_xsim xsim_run:
-	@if [ ! -x "`which xelab 2>/dev/null`" ]; then\
-		echo "xelab not found."; exit 1;\
-	fi
+run_dpi dpi_run:
 	if [ ! -f $(TARGET) ]; then make; fi
-	gnome-terminal --window -- bash -c "make -C $(DIR_XSIM); bash"
+	gnome-terminal --window -- bash -c "make -C $(DIR_VCS); bash"
 	make run SIMULATOR=vcs
 
 run_vpi vpi_run run_iverilog iverilog_run:
