@@ -532,4 +532,5 @@ Thanks to all who gave me valuable feedback.
 
 ### Revision history<a name="revision_history"></a>
 * 2021.08.01: Started by Ando Ki (andoki(at)gmail.com).
+* 2022.06.26: Supported VCS Simulator
 ---
