@@ -22,11 +22,14 @@ all: elab sim
 
 #xelab -prj xsim.prj -sv_root $(DIR_COSIM_ROOT) -sv_lib $(COSIM_LIB) -debug typical top -s top
 elab compile:
-	vcs -timescale=1ps/1ps -full64 -sverilog -f run.f -debug_access+all
+	vcs -timescale=1ns/1ps -full64 -sverilog -f run.f -debug_access+all
 
 #	./simv -l simv.log -sv_root $(DIR_COMSIM_ROOT) -sv_lib $(COSIM_LIB)
 sim run:
 	./simv -l simv.log -sv_lib $(DIR_COSIM_ROOT)/$(COSIM_LIB)
+
+verdi:
+	Verdi-SX -f run.f -sv &
 
 clean:
 	/bin/rm -f  top.wdb
@@ -48,6 +51,9 @@ clean:
 	/bin/rm -rf  csrc
 	/bin/rm -rf  simv.daidir
 	/bin/rm -rf  simv simv.log ucli.key vc_hdrs.h
+	/bin/rm -rf  Verdi-SXLog
+	/bin/rm -rf  novas_dump.log
+	/bin/rm -rf  *.fsdb
 
 cleanup clobber: clean
 

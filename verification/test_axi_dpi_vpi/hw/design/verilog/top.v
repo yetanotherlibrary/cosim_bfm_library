@@ -39,12 +39,6 @@
 
 module top ;
    //---------------------------------------------------------
-   `ifdef VCD
-   initial begin
-       $dumpfile("wave.vcd");
-   end
-   `endif
-   //---------------------------------------------------------
    localparam WIDTH_CID   = 0    // Channel ID width in bits; it should be 0 since no AXI matrix
             , WIDTH_ID    = 4    // ID width in bits
             , WIDTH_AD    =`WIDTH_AD    // address width
@@ -300,7 +294,14 @@ module top ;
    //---------------------------------------------------------
    `ifdef VCD
    initial begin
+       $dumpfile("wave.vcd");
        $dumpvars(0);
+   end
+   `endif
+   `ifdef FSDB
+   initial begin
+       $fsdbDumpfile("wave.fsdb");
+       $fsdbDumpvars(0);
    end
    `endif
    //---------------------------------------------------------

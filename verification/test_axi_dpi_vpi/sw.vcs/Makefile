@@ -74,7 +74,7 @@ pre:
 	if [ -f compile.log ]; then /bin/rm -f compile.log; fi
 
 run:
-	./$(TARGET) --cid=0 --verbose=0
+	./$(TARGET) --cid=0 --verbose=1
 
 run_dpi:
 	if [ ! -f $(TARGET) ]; then make; fi
