@@ -126,6 +126,51 @@ Xilinx Vivado simulator should be installed and available.
    > due to un-expected messages. To deal with this, terminate all related program and re-invoke the program
 </details>
 
+### 1.1 Getting started VCS simulator using DPI
+VCS simulator should be installed and available.
+
+<details><summary>Click to expand</summary>
+
+#### 1.1.1 preparing library
+
+   1) go to 'lib_bfm' directory\
+      *$ cd lib_bfm*
+   2) compile and install\
+      *$ make -f Makefile.vcs cleanup*\
+      *$ make -f Makefile.vcs*\
+      *$ make -f Makefile.vcs install*\
+      . It should generate 'include' and 'lib/xsim' directories.
+
+#### 1.1.2 running co-simulation
+
+   3) go to example directory\
+      *$ cd sim
+   4) prepare two command windows and do as follows
+      | HW-side          | SW-side       |
+      | :---             | :---          |
+      | $ make compile   | $ cd sw.vcs   |
+      | $ make elab      | $ make        |
+      | $ make sim       | $ make run    |
+
+#### 1.1.2 running co-simulation through Python
+
+   3) go to example directory\
+      *$ cd verification/test_axi_dpi_vpi*
+   4) prepare two command windows and do as follows (use Python3)
+      | HW-side          | Python-side   |
+      | :---             | :---          |
+      | $ cd hw/sim/xsim | $ cd python   |
+      | $ make           | $ make run    |
+
+   or
+   4) simply run as follows\
+      *$ make run_dpi*
+
+   > Sometimes there may occur "ERROR: data buffer size mis-match" at the begining of co-simulation
+   > due to un-expected messages. To deal with this, terminate all related program and re-invoke the program
+</details>
+
+
 ### 1.2 Getting started using VPI<a name="getting_started_vpi"></a>
 Icarus Verilog simulator should be installed and available.
 
