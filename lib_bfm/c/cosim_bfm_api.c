@@ -99,7 +99,7 @@ int bfm_write( uint32_t addr
 {
     // use channel ID previously opened by bfm_open(cid)
     if (addr%sz) PRINTF("un-aligned access.\n");
-    if ((sz!=1)&&(sz!=2)&&(sz!=4)) PRINTF("data size un-supported.\n");
+    //if ((sz!=1)&&(sz!=2)&&(sz!=4)) PRINTF("data size un-supported.\n");
     if (length>256) PRINTF("too long burst.\n");
     return bfm_write_core( m_cid
                          , 1
@@ -192,7 +192,7 @@ int bfm_read ( uint32_t addr
 {
     // use channel ID previously opened by bfm_open(cid)
     if (addr%sz) PRINTF("un-aligned access.\n");
-    if ((sz!=1)&&(sz!=2)&&(sz!=4)) PRINTF("data size un-supported.\n");
+    //if ((sz!=1)&&(sz!=2)&&(sz!=4)) PRINTF("data size un-supported.\n");
     if (length>256) PRINTF("too long burst.\n");
     return bfm_read_core ( m_cid
                          , 1

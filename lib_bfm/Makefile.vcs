@@ -34,6 +34,7 @@ DIR_IPC     = ../lib_ipc
 LIB_BFM     = cosim_bfm
 LIB_DPI_BFM = cosim_dpi_bfm
 LDFLAGS = -static -L/opt/tools/mentor/questasim/linux_x86_64/share/modeltech/linux_x86_64 -lmtipli
+VCS_HOME = /data/tools/synopsys_2021/vcs/S-2021.09-SP2-9
 #-------------------------------------------------------------------------------
 DIR_OBJ   = obj
 DUMMY    := $(shell [ -d $(DIR_OBJ) ] || mkdir $(DIR_OBJ) )
@@ -43,7 +44,7 @@ allx: compile prepare_defines compile_link
 
 compile_link:
 	gcc -m64 -fPIC -DRIGOR -Dxsim -Bsymbolic -shared \
-	-I/opt/tools/synopsys/vcs-all/R-2020.12-SP2/include \
+	-I${VCS_HOME}/include \
 	-Ic \
 	-I$(DIR_IPC)/src \
 	${DIR_BFM}/c/cosim_bfm_dpi.c \
