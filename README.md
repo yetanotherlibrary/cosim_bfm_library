@@ -139,7 +139,7 @@ VCS simulator should be installed and available.
       *$ make -f Makefile.vcs cleanup*\
       *$ make -f Makefile.vcs*\
       *$ make -f Makefile.vcs install*\
-      . It should generate 'include' and 'lib/xsim' directories.
+      . It should generate 'include' and 'lib/vcs' directories.
 
 #### 1.1.2 running co-simulation
 
